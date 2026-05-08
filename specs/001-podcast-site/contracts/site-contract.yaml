@@ -1,0 +1,64 @@
+site:
+  name: Modern Podcast Website
+  deployment:
+    type: static-export
+    routes:
+      - path: /
+        name: landing
+        requirements:
+          - displays podcast brand and show introduction
+          - displays exactly one featured episode
+          - links to /episodes through primary navigation or a primary call to action
+      - path: /episodes
+        name: episodes
+        requirements:
+          - displays exactly 20 mocked episodes
+          - each episode displays number, title, summary, publish date, duration, and artwork or placeholder artwork
+      - path: /about
+        name: about
+        requirements:
+          - explains the podcast premise
+          - explains the show voice or tone
+          - explains creator or host context
+      - path: /faq
+        name: faq
+        requirements:
+          - displays an ordered list of FAQ items
+          - answers common listener questions about the show and site usage
+  navigation:
+    persistent: true
+    links:
+      - /
+      - /episodes
+      - /about
+      - /faq
+  contentCollections:
+    episodes:
+      count: 20
+      featuredCount: 1
+      fields:
+        - id
+        - episodeNumber
+        - title
+        - summary
+        - publishDate
+        - durationMinutes
+        - artworkSrc
+        - artworkAlt
+        - isFeatured
+    faqItems:
+      minCount: 3
+      fields:
+        - id
+        - question
+        - answer
+        - displayOrder
+  accessibility:
+    requirements:
+      - primary navigation reachable by keyboard
+      - semantic page landmarks present on every route
+      - non-decorative images include alternative text
+  responsiveBehavior:
+    requirements:
+      - content remains readable on narrow mobile widths
+      - no horizontal scrolling for primary page content
